@@ -9,14 +9,14 @@ url:
 
 # Owner/author information
 owner:
-  name:           Neoni
+  name:           neoni
   avatar:         avatar.jpg
   bio:            優しくなりたければ強くあれ
   email:          blue.snow013@163.com
   # Social networking links used in footer. Update and remove as you like.
   twitter:        
   facebook:       
-  github:         
+  github:         https://github.com/neoni
   stackexchange:  
   linkedin:       
   instagram:      
@@ -35,7 +35,7 @@ google_verify:
 bing_verify:         
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-timezone:    China
+timezone:    Asia/Shanghai
 future:      true
 highlighter: pygments
 #markdown:    kramdown

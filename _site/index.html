@@ -70,11 +70,11 @@
 			<a href="#">About</a>
 			<ul class="dl-submenu">
 				<li>
-					<img src="/images/avatar.jpg" alt="Neoni photo" class="author-photo">
-					<h4>Neoni</h4>
+					<img src="/images/avatar.jpg" alt="neoni photo" class="author-photo">
+					<h4>neoni</h4>
 					<p>優しくなりたければ強くあれ</p>
 				</li>
-				<li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li>
+				<!--li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li-->
 				<li>
 					<a href="mailto:blue.snow013@163.com"><i class="fa fa-fw fa-envelope"></i> Email</a>
 				</li>
@@ -82,7 +82,9 @@
 				
 				
 				
-				
+				<li>
+					<a href="http://github.com/https://github.com/neoni"><i class="fa fa-fw fa-github"></i> GitHub</a>
+				</li>
 				
 				
 				
@@ -109,7 +111,52 @@
   <header>
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2015-07-26T03:31:50+00:00"><a href="/pyjail-tricks/">July 26, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About Neoni">Neoni</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2015-08-27T13:31:30+08:00"><a href="/kali-2-0-cant-find-shared-folders-in-vmware/">August 27, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About neoni">neoni</a></span></span>
+      
+      <span class="entry-reading-time">
+        <i class="fa fa-clock-o"></i>
+        
+        Reading time ~1 minute
+      </span><!-- /.entry-reading-time -->
+      
+    </div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title"><a href="/kali-2-0-cant-find-shared-folders-in-vmware/" rel="bookmark" title="Kali 2.0 Can't Find Shared Folders in Vmware" itemprop="url">Kali 2.0 Can't Find Shared Folders in Vmware</a></h1>
+    
+  </header>
+  <div class="entry-content">
+    <h3>Reason: VMware Tools broken with gcc 5.1.0+</h3>
+
+<ul>
+<li><p>during vmware-tools-install.pl, it won&#39;t compile vmhgfs with errors of functions not found.  needs to be patched (vmware issue, ignore)</p></li>
+<li><p>during vmware-tools-install.pl again with patched script, it compiles just fine.</p></li>
+<li><p>but during the Kernel Modules enabling portion, the system hangs / freezes / halts.  Hard reset is only resolve.</p></li>
+<li><p>on system boot, system hangs / freezes / halts on vmhgfs initialization.  </p></li>
+</ul>
+
+<h3>solution</h3>
+
+<ul>
+<li>first use gcc-4.9 instead of gcc-5.+</li>
+</ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">ln -sf /usr/bin/gcc-4.9 /usr/bin/gcc
+</code></pre></div>
+<ul>
+<li>then use <a href="https://github.com/rasa/vmware-tools-patches/">vmware-tools patch</a></li>
+</ul>
+
+<h3>Ref</h3>
+
+<p><a href="https://bbs.archlinux.org/viewtopic.php?id=197684">https://bbs.archlinux.org/viewtopic.php?id=197684</a></p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry">
+  <header>
+    
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2015-07-26T11:31:50+08:00"><a href="/pyjail-tricks/">July 26, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About neoni">neoni</a></span></span>
       
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>
@@ -685,7 +732,7 @@
 
 <div class="footer-wrapper">
   <footer role="contentinfo">
-    <span>&copy; 2015 Neoni. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/hpstr-jekyll-theme/" rel="nofollow">HPSTR Theme</a>.</span>
+    <span>&copy; 2015 neoni. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/hpstr-jekyll-theme/" rel="nofollow">HPSTR Theme</a>.</span>
   </footer>
 </div><!-- /.footer-wrapper -->
 

@@ -1,0 +1,216 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Kali 2.0 Can't Find Shared Folders in Vmware &#8211; Ever R In The Sun</title>
+<meta name="description" content="Dying in the sun">
+<meta name="keywords" content="kali, vmware-tools">
+
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kali 2.0 Can't Find Shared Folders in Vmware">
+<meta property="og:description" content="Dying in the sun">
+<meta property="og:url" content="/kali-2-0-cant-find-shared-folders-in-vmware/">
+<meta property="og:site_name" content="Ever R In The Sun">
+
+
+
+
+
+<link rel="canonical" href="/kali-2-0-cant-find-shared-folders-in-vmware/">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ever R In The Sun Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Webfonts -->
+<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script src="/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
+
+
+
+</head>
+
+<body id="post" >
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
+	<button class="dl-trigger">Open Menu</button>
+	<ul class="dl-menu">
+		<li><a href="/">Home</a></li>
+		<li>
+			<a href="#">About</a>
+			<ul class="dl-submenu">
+				<li>
+					<img src="/images/avatar.jpg" alt="neoni photo" class="author-photo">
+					<h4>neoni</h4>
+					<p>優しくなりたければ強くあれ</p>
+				</li>
+				<!--li><a href="/about/"><span class="btn btn-inverse">Learn More</span></a></li-->
+				<li>
+					<a href="mailto:blue.snow013@163.com"><i class="fa fa-fw fa-envelope"></i> Email</a>
+				</li>
+				
+				
+				
+				
+				<li>
+					<a href="http://github.com/https://github.com/neoni"><i class="fa fa-fw fa-github"></i> GitHub</a>
+				</li>
+				
+				
+				
+				
+			</ul><!-- /.dl-submenu -->
+		</li>
+		<li>
+			<a href="#">Posts</a>
+			<ul class="dl-submenu">
+				<li><a href="/posts/">All Posts</a></li>
+				<li><a href="/tags/">All Tags</a></li>
+			</ul>
+		</li>
+		
+	</ul><!-- /.dl-menu -->
+</nav><!-- /.dl-menuwrapper -->
+
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        
+          <h1 class="entry-title"><a href="/kali-2-0-cant-find-shared-folders-in-vmware/" rel="bookmark" title="Kali 2.0 Can't Find Shared Folders in Vmware">Kali 2.0 Can't Find Shared Folders in Vmware</a></h1>
+        
+        <h2><span class="entry-date date published"><time datetime="2015-08-27T13:31:30+08:00">August 27, 2015</time></span></h2>
+        
+        <p class="entry-reading-time">
+          <i class="fa fa-clock-o"></i>
+          
+          Reading time ~1 minute
+        </p><!-- /.entry-reading-time -->
+        
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      <h3>Reason: VMware Tools broken with gcc 5.1.0+</h3>
+
+<ul>
+<li><p>during vmware-tools-install.pl, it won&#39;t compile vmhgfs with errors of functions not found.  needs to be patched (vmware issue, ignore)</p></li>
+<li><p>during vmware-tools-install.pl again with patched script, it compiles just fine.</p></li>
+<li><p>but during the Kernel Modules enabling portion, the system hangs / freezes / halts.  Hard reset is only resolve.</p></li>
+<li><p>on system boot, system hangs / freezes / halts on vmhgfs initialization.  </p></li>
+</ul>
+
+<h3>solution</h3>
+
+<ul>
+<li>first use gcc-4.9 instead of gcc-5.+</li>
+</ul>
+<div class="highlight"><pre><code class="language-text" data-lang="text">ln -sf /usr/bin/gcc-4.9 /usr/bin/gcc
+</code></pre></div>
+<ul>
+<li>then use <a href="https://github.com/rasa/vmware-tools-patches/">vmware-tools patch</a></li>
+</ul>
+
+<h3>Ref</h3>
+
+<p><a href="https://bbs.archlinux.org/viewtopic.php?id=197684">https://bbs.archlinux.org/viewtopic.php?id=197684</a></p>
+
+      <footer class="entry-meta">
+        <span class="entry-tags"><a href="/tags/#kali" title="Pages tagged kali" class="tag"><span class="term">kali</span></a><a href="/tags/#vmware-tools" title="Pages tagged vmware-tools" class="tag"><span class="term">vmware-tools</span></a></span>
+        
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=/kali-2-0-cant-find-shared-folders-in-vmware/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=/kali-2-0-cant-find-shared-folders-in-vmware/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=/kali-2-0-cant-find-shared-folders-in-vmware/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+  </ul>
+</div><!-- /.social-share -->
+      </footer>
+    </div><!-- /.entry-content -->
+    <section id="disqus_thread"></section><!-- /#disqus_thread -->
+    <div class="read-more">
+  
+    <div class="read-more-header">
+      <a href="/pyjail-tricks/" class="read-more-btn">Read More</a>
+    </div><!-- /.read-more-header -->
+    <div class="read-more-content">
+      <h3><a href="/pyjail-tricks/" title="Pyjail Tricks">Pyjail Tricks</a></h3>
+      <p>实现pyjail 实现方法主要有：删除 _builtins_ 中的方法屏蔽关键字删除 modulesobject的subclasses方法1. 查看一个空列表的类属性&gt;&gt;&gt; [].__class__&lt;type &#39;list&#39;&gt; 2...&hellip; <a href="/pyjail-tricks/">Continue reading</a></p>
+    </div><!-- /.read-more-content -->
+  
+  <div class="read-more-list">
+    
+  </div><!-- /.read-more-list -->
+</div><!-- /.read-more -->
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2015 neoni. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/hpstr-jekyll-theme/" rel="nofollow">HPSTR Theme</a>.</span>
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="/assets/js/scripts.min.js"></script>
+
+
+
+
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'neoni'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	        
+
+</body>
+</html>
