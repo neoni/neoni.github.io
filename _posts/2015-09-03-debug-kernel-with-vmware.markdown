@@ -2,7 +2,7 @@
 layout: post
 title: "[转]使用Vmware调试Linux内核"
 comments: true
-tags: [kali, vmware-tools]
+tags: [debug, kernel]
 date: 2015-09-03T23:08:56+08:00
 ---
 
