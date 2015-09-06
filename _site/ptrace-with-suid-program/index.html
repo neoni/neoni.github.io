@@ -5,25 +5,25 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Kali 2.0 Can't Find Shared Folders in Vmware &#8211; Ever R In The Sun</title>
-<meta name="description" content="Dying in the sun">
-<meta name="keywords" content="kali, vmware-tools">
+<title>Suid program can't work with ptrace &#8211; Ever R In The Sun</title>
+<meta name="description" content="hi wkwedlsdjk">
+<meta name="keywords" content="debug, ptrace">
 
 
 
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Kali 2.0 Can't Find Shared Folders in Vmware">
-<meta property="og:description" content="Dying in the sun">
-<meta property="og:url" content="/kali-2-0-cant-find-shared-folders-in-vmware/">
+<meta property="og:title" content="Suid program can't work with ptrace">
+<meta property="og:description" content="hi wkwedlsdjk">
+<meta property="og:url" content="/ptrace-with-suid-program/">
 <meta property="og:site_name" content="Ever R In The Sun">
 
 
 
 
 
-<link rel="canonical" href="/kali-2-0-cant-find-shared-folders-in-vmware/">
+<link rel="canonical" href="/ptrace-with-suid-program/">
 <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ever R In The Sun Feed">
 
 <!-- http://t.co/dKP3o1e -->
@@ -109,9 +109,9 @@
     <header class="header-title">
       <div class="header-title-wrap">
         
-          <h1 class="entry-title"><a href="/kali-2-0-cant-find-shared-folders-in-vmware/" rel="bookmark" title="Kali 2.0 Can't Find Shared Folders in Vmware">Kali 2.0 Can't Find Shared Folders in Vmware</a></h1>
+          <h1 class="entry-title"><a href="/ptrace-with-suid-program/" rel="bookmark" title="Suid program can't work with ptrace">Suid program can't work with ptrace</a></h1>
         
-        <h2><span class="entry-date date published"><time datetime="2015-08-27T13:31:30+08:00">August 27, 2015</time></span></h2>
+        <h2><span class="entry-date date published"><time datetime="2015-09-05T21:00:36+08:00">September 05, 2015</time></span></h2>
         
         <p class="entry-reading-time">
           <i class="fa fa-clock-o"></i>
@@ -122,38 +122,27 @@
       </div><!-- /.header-title-wrap -->
     </header>
     <div class="entry-content">
-      <h3>Reason: VMware Tools broken with gcc 5.1.0+</h3>
+      <p>If we resume the process with PTRACE_CONT without detaching works and parent process doesn&#39;t terminated, it will work like in the gdb, then suid will not work. So we have to detach the work at first.</p>
 
-<ul>
-<li><p>during vmware-tools-install.pl, it won&#39;t compile vmhgfs with errors of functions not found.  needs to be patched (vmware issue, ignore)</p></li>
-<li><p>during vmware-tools-install.pl again with patched script, it compiles just fine.</p></li>
-<li><p>but during the Kernel Modules enabling portion, the system hangs / freezes / halts.  Hard reset is only resolve.</p></li>
-<li><p>on system boot, system hangs / freezes / halts on vmhgfs initialization.  </p></li>
-</ul>
-
-<h3>solution</h3>
-
-<ul>
-<li>first use gcc-4.9 instead of gcc-5.+</li>
-</ul>
-<div class="highlight"><pre><code class="language-Python" data-lang="Python"><span class="n">ln</span> <span class="o">-</span><span class="n">sf</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">gcc</span><span class="o">-</span><span class="mf">4.9</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">gcc</span>
+<p>PTRACE_DETACH is a restarting operation; therefore it requires the tracee to be in ptrace-stop. If the tracee is in signal-delivery- stop, a signal can be injected. Otherwise, the sig parameter may be silently ignored.</p>
+<div class="highlight"><pre><code class="language-C" data-lang="C"><span class="n">ptrace</span><span class="p">(</span><span class="n">PTRACE_CONT</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">kill</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">SIGSTOP</span><span class="p">);</span>
+<span class="n">waitpid</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">erro</span> <span class="o">=</span> <span class="n">ptrace</span><span class="p">(</span><span class="n">PT_DETACH</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;ret: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">erro</span><span class="p">);</span>
 </code></pre></div>
-<ul>
-<li>then use <a href="https://github.com/rasa/vmware-tools-patches/">vmware-tools patch</a></li>
-</ul>
-
 <h3>Ref</h3>
 
-<p><a href="https://bbs.archlinux.org/viewtopic.php?id=197684">https://bbs.archlinux.org/viewtopic.php?id=197684</a></p>
+<p><a href="http://stackoverflow.com/questions/20510300/ptrace-detach-fails-after-ptrace-cont-with-errno-esrch">PTRACE<em>DETACH fails after PTRACE</em>CONT with errno=ESRCH</a></p>
 
       <footer class="entry-meta">
-        <span class="entry-tags"><a href="/tags/#kali" title="Pages tagged kali" class="tag"><span class="term">kali</span></a><a href="/tags/#vmware-tools" title="Pages tagged vmware-tools" class="tag"><span class="term">vmware-tools</span></a></span>
+        <span class="entry-tags"><a href="/tags/#debug" title="Pages tagged debug" class="tag"><span class="term">debug</span></a><a href="/tags/#ptrace" title="Pages tagged ptrace" class="tag"><span class="term">ptrace</span></a></span>
         
         <div class="social-share">
   <ul class="socialcount socialcount-small inline-list">
-    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=/kali-2-0-cant-find-shared-folders-in-vmware/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
-    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=/kali-2-0-cant-find-shared-folders-in-vmware/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
-    <li class="googleplus"><a href="https://plus.google.com/share?url=/kali-2-0-cant-find-shared-folders-in-vmware/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=/ptrace-with-suid-program/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=/ptrace-with-suid-program/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=/ptrace-with-suid-program/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
   </ul>
 </div><!-- /.social-share -->
       </footer>
@@ -162,18 +151,18 @@
     <div class="read-more">
   
     <div class="read-more-header">
-      <a href="/pyjail-tricks/" class="read-more-btn">Read More</a>
+      <a href="/debug-kernel-with-vmware/" class="read-more-btn">Read More</a>
     </div><!-- /.read-more-header -->
     <div class="read-more-content">
-      <h3><a href="/ptrace-with-suid-program/" title="Suid program can't work with ptrace">Suid program can't work with ptrace</a></h3>
-      <p>hi wkwedlsdjk <a href="/ptrace-with-suid-program/">Continue reading</a></p>
+      <h3><a href="/debug-kernel-with-vmware/" title="[转]使用Vmware调试Linux内核">[转]使用Vmware调试Linux内核</a></h3>
+      <p>转自 http://f0ol.github.io/2015/09/03/debug-kernel-with-vmware.html之前调试内核使用的是kgdb，需要自己编译内核加入kgdb的支持，这样就没办法调试现有的发行版自带的内核。qemu支持gdbstub，但是qem...&hellip; <a href="/debug-kernel-with-vmware/">Continue reading</a></p>
     </div><!-- /.read-more-content -->
   
   <div class="read-more-list">
     
       <div class="list-item">
-        <h4><a href="/debug-kernel-with-vmware/" title="[转]使用Vmware调试Linux内核">[转]使用Vmware调试Linux内核</a></h4>
-        <span>Published on September 03, 2015</span>
+        <h4><a href="/kali-2-0-cant-find-shared-folders-in-vmware/" title="Kali 2.0 Can't Find Shared Folders in Vmware">Kali 2.0 Can't Find Shared Folders in Vmware</a></h4>
+        <span>Published on August 27, 2015</span>
       </div><!-- /.list-item -->
     
       <div class="list-item">

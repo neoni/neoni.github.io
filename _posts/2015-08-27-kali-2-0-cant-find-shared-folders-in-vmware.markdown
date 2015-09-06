@@ -21,7 +21,7 @@ date: 2015-08-27T13:31:30+08:00
 
 * first use gcc-4.9 instead of gcc-5.+
 
-```
+```Python
 ln -sf /usr/bin/gcc-4.9 /usr/bin/gcc
 ```
 

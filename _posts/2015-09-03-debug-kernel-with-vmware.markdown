@@ -20,7 +20,7 @@ date: 2015-09-03T23:08:56+08:00
 
 修改需要调试的虚拟机的.vmx配置文件，加入下面两行：
 
-```
+```Python
 debugStub.listen.guest64 = "TRUE"
 debugStub.listen.guest32 = "TRUE"
 ```
@@ -31,7 +31,7 @@ debugStub.listen.guest32 = "TRUE"
 
 在主机上打开gdb，加载带符号的内核，然后输入：
 
-```
+```Python
 target remote :8864
 ```
 

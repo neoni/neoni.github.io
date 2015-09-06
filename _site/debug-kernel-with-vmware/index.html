@@ -135,15 +135,15 @@
 <h2>虚拟机配置</h2>
 
 <p>修改需要调试的虚拟机的.vmx配置文件，加入下面两行：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">debugStub.listen.guest64 = &quot;TRUE&quot;
-debugStub.listen.guest32 = &quot;TRUE&quot;
+<div class="highlight"><pre><code class="language-Python" data-lang="Python"><span class="n">debugStub</span><span class="o">.</span><span class="n">listen</span><span class="o">.</span><span class="n">guest64</span> <span class="o">=</span> <span class="s">&quot;TRUE&quot;</span>
+<span class="n">debugStub</span><span class="o">.</span><span class="n">listen</span><span class="o">.</span><span class="n">guest32</span> <span class="o">=</span> <span class="s">&quot;TRUE&quot;</span>
 </code></pre></div>
 <p>启动虚拟机。</p>
 
 <h2>使用gdb附加</h2>
 
 <p>在主机上打开gdb，加载带符号的内核，然后输入：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">target remote :8864
+<div class="highlight"><pre><code class="language-Python" data-lang="Python"><span class="n">target</span> <span class="n">remote</span> <span class="p">:</span><span class="mi">8864</span>
 </code></pre></div>
 <p>32位cpu对应的是8832端口。假如有多个虚拟机开着debugStub，
 端口号依次增加。</p>
@@ -194,11 +194,16 @@ debugStub.listen.guest32 = &quot;TRUE&quot;
       <a href="/kali-2-0-cant-find-shared-folders-in-vmware/" class="read-more-btn">Read More</a>
     </div><!-- /.read-more-header -->
     <div class="read-more-content">
-      <h3><a href="/kali-2-0-cant-find-shared-folders-in-vmware/" title="Kali 2.0 Can't Find Shared Folders in Vmware">Kali 2.0 Can't Find Shared Folders in Vmware</a></h3>
-      <p>Reason: VMware Tools broken with gcc 5.1.0+during vmware-tools-install.pl, it won&#39;t compile vmhgfs with errors of functions not found...&hellip; <a href="/kali-2-0-cant-find-shared-folders-in-vmware/">Continue reading</a></p>
+      <h3><a href="/ptrace-with-suid-program/" title="Suid program can't work with ptrace">Suid program can't work with ptrace</a></h3>
+      <p>hi wkwedlsdjk <a href="/ptrace-with-suid-program/">Continue reading</a></p>
     </div><!-- /.read-more-content -->
   
   <div class="read-more-list">
+    
+      <div class="list-item">
+        <h4><a href="/kali-2-0-cant-find-shared-folders-in-vmware/" title="Kali 2.0 Can't Find Shared Folders in Vmware">Kali 2.0 Can't Find Shared Folders in Vmware</a></h4>
+        <span>Published on August 27, 2015</span>
+      </div><!-- /.list-item -->
     
       <div class="list-item">
         <h4><a href="/pyjail-tricks/" title="Pyjail Tricks">Pyjail Tricks</a></h4>
