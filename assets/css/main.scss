@@ -27,3 +27,24 @@ sitemap: false
 @import "animations";
 @import "dl-menu";
 @import "page";
+
+pre {
+    font-size:0.85rem;
+    line-height:2;
+}
+
+#post-index #main {
+    max-width: 900px;
+}
+
+a {
+    color: #4E8ED2;
+}
+
+a:visited {
+    color: #8EB0C8;
+}
+
+p code, li code {
+    background-color: #fbe451;
+}
