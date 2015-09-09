@@ -3,7 +3,6 @@ layout: post
 title: "Suid program can't work with ptrace"
 comments: true
 tags: [debug, ptrace]
-description: hi wkwedlsdjk
 date: 2015-09-05T21:00:36+08:00
 ---
 

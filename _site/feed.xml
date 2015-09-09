@@ -4,13 +4,216 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="" />
-<updated>2015-09-08T12:12:51+08:00</updated>
+<updated>2015-09-09T13:39:28+08:00</updated>
 <id>/</id>
 <author>
   <name>neoni</name>
   <uri>/</uri>
-  <email>blue.snow013@163.com</email>
+  <email>chaos.dec@gmail.com</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[.got.plt Research]]></title>
+ <link rel="alternate" type="text/html" href="/got-plt-research/" />
+  <id>/got-plt-research</id>
+  <published>2015-09-09T10:50:17+08:00</published>
+  <updated>2015-09-09T10:50:17+08:00</updated>
+  <author>
+    <name>neoni</name>
+    <uri></uri>
+    <email>chaos.dec@gmail.com</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;.got.plt的前3项，分别是&lt;code&gt;.dynamic&lt;/code&gt;的地址，&lt;code&gt;link_map&lt;/code&gt; 的地址和 &lt;code&gt;_dl_runtime_resolve&lt;/code&gt; 的地址&lt;/p&gt;
+
+&lt;p&gt;由此可以得到很多有用的信息&lt;/p&gt;
+
+&lt;h2&gt;.dynamic&lt;/h2&gt;
+
+&lt;p&gt;.dynamic 保存了动态链接器所需要的基本信息，比如依赖哪些共享对象、动态链接符号表的位置、动态链接重定位表的位置、共享对象初始化代码的地址等。&lt;/p&gt;
+
+&lt;p&gt;使用 &lt;code&gt;readelf -d xxx&lt;/code&gt; 可以查看 .dynamic&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;Dynamic&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;section&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;at&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;offset&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x1f04&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;contains&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;entries&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;Tag&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;Type&lt;/span&gt;                         &lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Value&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x00000001&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NEEDED&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                     &lt;span class=&quot;n&quot;&gt;Shared&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;libncurses&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;so&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x00000001&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NEEDED&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                     &lt;span class=&quot;n&quot;&gt;Shared&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;libtinfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;so&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x00000001&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NEEDED&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                     &lt;span class=&quot;n&quot;&gt;Shared&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;libc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;so&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x0000000c&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;INIT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                       &lt;span class=&quot;mh&quot;&gt;0x80486bc&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x0000000d&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FINI&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                       &lt;span class=&quot;mh&quot;&gt;0x8049934&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x00000019&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;INIT_ARRAY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                 &lt;span class=&quot;mh&quot;&gt;0x804aef8&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x0000001b&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;INIT_ARRAYSZ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;               &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bytes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x0000001a&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FINI_ARRAY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                 &lt;span class=&quot;mh&quot;&gt;0x804aefc&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x0000001c&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FINI_ARRAYSZ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;               &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bytes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x6ffffef5&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;GNU_HASH&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                   &lt;span class=&quot;mh&quot;&gt;0x80481ac&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x00000005&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;STRTAB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                     &lt;span class=&quot;mh&quot;&gt;0x8048400&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x00000006&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SYMTAB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                     &lt;span class=&quot;mh&quot;&gt;0x80481f0&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x0000000a&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;STRSZ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                      &lt;span class=&quot;mi&quot;&gt;393&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bytes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x0000000b&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SYMENT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                     &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bytes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x00000015&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DEBUG&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                      &lt;span class=&quot;mh&quot;&gt;0x0&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x00000003&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PLTGOT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                     &lt;span class=&quot;mh&quot;&gt;0x804b000&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x00000002&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PLTRELSZ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                   &lt;span class=&quot;mi&quot;&gt;168&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bytes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x00000014&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PLTREL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                     &lt;span class=&quot;n&quot;&gt;REL&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x00000017&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;JMPREL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                     &lt;span class=&quot;mh&quot;&gt;0x8048614&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x00000011&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;REL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                        &lt;span class=&quot;mh&quot;&gt;0x80485fc&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x00000012&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RELSZ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                      &lt;span class=&quot;mi&quot;&gt;24&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bytes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x00000013&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RELENT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                     &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;bytes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x6ffffffe&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;VERNEED&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                    &lt;span class=&quot;mh&quot;&gt;0x80485cc&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x6fffffff&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;VERNEEDNUM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                 &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x6ffffff0&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;VERSYM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                     &lt;span class=&quot;mh&quot;&gt;0x804858a&lt;/span&gt;
+ &lt;span class=&quot;mh&quot;&gt;0x00000000&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                       &lt;span class=&quot;mh&quot;&gt;0x0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;.dynamic 的结构&lt;/h4&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-C&quot; data-lang=&quot;C&quot;&gt;&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Elf32_Sword&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d_tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;union&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;Elf32_Word&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;d_val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;Elf32_Addr&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;d_ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;Elf32_Off&lt;/span&gt;       &lt;span class=&quot;n&quot;&gt;d_off&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d_un&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Elf32_Dyn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Elf64_Xword&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d_tag&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;union&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;Elf64_Xword&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;d_val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;Elf64_Addr&lt;/span&gt;      &lt;span class=&quot;n&quot;&gt;d_ptr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d_un&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Elf64_Dyn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;对每一个有该类型的object，d&lt;em&gt;tag控制着d&lt;/em&gt;un的解释。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;d_val&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;那些Elf32_Word object描绘了具有不同解释的整形变量。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;d_ptr&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;那些Elf32_Word object描绘了程序的虚拟地址。就象以前提到的，在执行时，
+  文件的虚拟地址可能和内存虚拟地址不匹配。当解释包含在动态结构中的地址
+  时是基于原始文件的值和内存的基地址。为了一致性，文件不包含在
+  重定位入口来纠正在动态结构中的地址。&lt;/p&gt;
+
+&lt;h4&gt;在gdb中查看 .dynamic 的内容&lt;/h4&gt;
+
+&lt;p&gt;可以看到 &lt;code&gt;0x0000000c (INIT) 0x80486bc&lt;/code&gt; 在 0x804af1c 中相对应&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;gdb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;peda&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xw&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x804af04&lt;/span&gt;
+&lt;span class=&quot;mh&quot;&gt;0x804af04&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000001&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000001&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000001&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x000000e0&lt;/span&gt;
+&lt;span class=&quot;mh&quot;&gt;0x804af14&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000001&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x000000ee&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x0000000c&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x080486bc&lt;/span&gt;
+&lt;span class=&quot;mh&quot;&gt;0x804af24&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x0000000d&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x08049934&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000019&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x0804aef8&lt;/span&gt;
+&lt;span class=&quot;mh&quot;&gt;0x804af34&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x0000001b&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000004&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x0000001a&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x0804aefc&lt;/span&gt;
+&lt;span class=&quot;mh&quot;&gt;0x804af44&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x0000001c&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000004&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x6ffffef5&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x080481ac&lt;/span&gt;
+&lt;span class=&quot;mh&quot;&gt;0x804af54&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000005&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x08048400&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000006&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x080481f0&lt;/span&gt;
+&lt;span class=&quot;mh&quot;&gt;0x804af64&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x0000000a&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000189&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x0000000b&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000010&lt;/span&gt;
+&lt;span class=&quot;mh&quot;&gt;0x804af74&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000015&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x55575918&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000003&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x0804b000&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;hr&gt;
+
+&lt;h2&gt;link_map&lt;/h2&gt;
+
+&lt;p&gt;每个被加载入内存的so文件都会在内存中有一个link&lt;em&gt;map结构，并且整个进程地址空间中所有的这些map结构由r&lt;/em&gt;debug为头组成一个链表，在知道了这个链表的起始地址之后，我们就可以遍历整个链表，得到可执行文件所有的加载so文件。&lt;/p&gt;
+
+&lt;h4&gt;link_map 的结构&lt;/h4&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-C&quot; data-lang=&quot;C&quot;&gt;&lt;span class=&quot;cm&quot;&gt;/* Structure describing a loaded shared object.  The `l_next&amp;#39; and `l_prev&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;   members form a chain of all the shared objects loaded at startup.&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;   These data structures exist in space used by the run-time dynamic linker;&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;   modifying them may have disastrous results.  */&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;link_map&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;cm&quot;&gt;/* These first few members are part of the protocol with the debugger.&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;       This is the same format used in SVR4.  */&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;ElfW&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Addr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l_addr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;          &lt;span class=&quot;cm&quot;&gt;/* Difference between the address in the ELF&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;                                   file and the addresses in memory.  */&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;               &lt;span class=&quot;cm&quot;&gt;/* Absolute file name object was found in.  */&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ElfW&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Dyn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l_ld&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;            &lt;span class=&quot;cm&quot;&gt;/* Dynamic section of the shared object.  */&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;link_map&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l_next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l_prev&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* Chain of loaded objects.  */&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;可以通过遍历link&lt;em&gt;map寻找库，对比l&lt;/em&gt;name，找到目标之后，可以通过l_addr获得库的基址。&lt;/p&gt;
+
+&lt;h4&gt;DT_DEBUG 寻找 link_map&lt;/h4&gt;
+
+&lt;p&gt;在linux下的动态加载器ld.so为一个可执行文件执行动态链接时，它会在动态链接完成之后，将可执行文件这个位置填充上整个进程的全局的一个debug信息的位置。&lt;/p&gt;
+
+&lt;p&gt;还可以通过 DT_DEBUG 来寻找 link_map&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;在 .dynamic 找到 DT_DEBUG (0x00000015) 的地址值&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;DT_DEBUG 结构&lt;/p&gt;
+
+&lt;p&gt;可以看到 link_map 是 DT_DEBUG 的第二个元素 &lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-C&quot; data-lang=&quot;C&quot;&gt;&lt;span class=&quot;cm&quot;&gt;/* Rendezvous structure used by the run-time dynamic linker to communicate&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;   details of shared object loading to the debugger.  If the executable&amp;#39;s&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;   dynamic section has a DT_DEBUG element, the run-time linker sets that&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;   element&amp;#39;s value to the address where this structure can be found.  */&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r_debug&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r_version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;              &lt;span class=&quot;cm&quot;&gt;/* Version number for this protocol.  */&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;link_map&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r_map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;     &lt;span class=&quot;cm&quot;&gt;/* Head of the chain of loaded objects.  */&lt;/span&gt;
+
+    &lt;span class=&quot;cm&quot;&gt;/* This is the address of a function internal to the run-time linker,&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;       that will always be called when the linker begins to map in a&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;       library or unmap it, and again when the mapping change is complete.&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;       The debugger can set a breakpoint at this address if it wants to&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;       notice shared object mapping changes.  */&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ElfW&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Addr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r_brk&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;enum&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; 
+        &lt;span class=&quot;cm&quot;&gt;/* This state value describes the mapping change taking place when&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;           the `r_brk&amp;#39; address is called.  */&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;RT_CONSISTENT&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;          &lt;span class=&quot;cm&quot;&gt;/* Mapping change is complete.  */&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;RT_ADD&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;                 &lt;span class=&quot;cm&quot;&gt;/* Beginning to add a new object.  */&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;RT_DELETE&lt;/span&gt;               &lt;span class=&quot;cm&quot;&gt;/* Beginning to remove an object mapping.  */&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r_state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;ElfW&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Addr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r_ldbase&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;        &lt;span class=&quot;cm&quot;&gt;/* Base address the linker is loaded at.  */&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;可以通过遍历link&lt;em&gt;map寻找库，对比l&lt;/em&gt;name，找到目标之后，可以通过l_addr获得库的基址。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;gdb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;peda&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xw&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x55575918&lt;/span&gt;
+&lt;span class=&quot;mh&quot;&gt;0x55575918&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_r_debug&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000001&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x55575930&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x55564090&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000000&lt;/span&gt;
+&lt;span class=&quot;mh&quot;&gt;0x55575928&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_r_debug&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;   &lt;span class=&quot;mh&quot;&gt;0x55555000&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000000&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000000&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x55575c1c&lt;/span&gt;
+&lt;span class=&quot;mh&quot;&gt;0x55575938&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x0804af04&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x55575c20&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gdb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;peda&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xw&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x55575930&lt;/span&gt;
+&lt;span class=&quot;mh&quot;&gt;0x55575930&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x00000000&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x55575c1c&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x0804af04&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x55575c20&lt;/span&gt;
+&lt;span class=&quot;mh&quot;&gt;0x55575940&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x00000000&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x55575930&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000000&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x55575c10&lt;/span&gt;
+&lt;span class=&quot;mh&quot;&gt;0x55575950&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x00000000&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x0804af14&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gdb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;peda&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x55575c1c&lt;/span&gt;
+&lt;span class=&quot;mh&quot;&gt;0x55575c1c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gdb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;peda&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xw&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x55575c20&lt;/span&gt;
+&lt;span class=&quot;mh&quot;&gt;0x55575c20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x55578000&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x55575e90&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x55578278&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x5557a8e8&lt;/span&gt;
+&lt;span class=&quot;mh&quot;&gt;0x55575c30&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x55575930&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x55575c20&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000000&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x55575e80&lt;/span&gt;
+&lt;span class=&quot;mh&quot;&gt;0x55575c40&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x00000000&lt;/span&gt;  &lt;span class=&quot;mh&quot;&gt;0x00000000&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gdb&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;peda&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;mh&quot;&gt;0x55575e90&lt;/span&gt;
+&lt;span class=&quot;mh&quot;&gt;0x55575e90&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;linux-gate.so.1&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;&lt;em&gt;dl&lt;/em&gt;runtime_resolver&lt;/h2&gt;
+
+&lt;p&gt;在下一篇中介绍&lt;/p&gt;
+
+&lt;h2&gt;参考&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://docs.oracle.com/cd/E23824_01/html/819-0690/chapter6-42444.html#scrolltoc&quot;&gt;Dynamic Section&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://linux.chinaunix.net/techdoc/system/2008/01/28/977695.shtml&quot;&gt;elf文件类型六 Dynamic Section（动态section）&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://rk700.github.io/article/2015/04/09/dt_debug-read/&quot;&gt;通过DT_DEBUG来获得各个库的基址&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://tsecer.blog.163.com/blog/static/15018172013924104112444/&quot;&gt;gdb对attach和core文件的处理方式&lt;/a&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;/got-plt-research/&quot;&gt;.got.plt Research&lt;/a&gt; was originally published by neoni at &lt;a href=&quot;&quot;&gt;Ever R In The Sun&lt;/a&gt; on September 09, 2015.&lt;/p&gt;
+  </content>
+</entry>
 
 
 <entry>
@@ -22,7 +225,7 @@
   <author>
     <name>neoni</name>
     <uri></uri>
-    <email>blue.snow013@163.com</email>
+    <email>chaos.dec@gmail.com</email>
   </author>
   <content type="html">
     &lt;h3&gt;debug the parent process and the child process&lt;/h3&gt;
@@ -127,7 +330,7 @@ show detach-on-fork
   <author>
     <name>neoni</name>
     <uri></uri>
-    <email>blue.snow013@163.com</email>
+    <email>chaos.dec@gmail.com</email>
   </author>
   <content type="html">
     &lt;p&gt;If we resume the process with PTRACE_CONT without detaching works and parent process doesn&amp;#39;t terminated, it will work like in the gdb, then suid will not work. So we have to detach the work at first.&lt;/p&gt;
@@ -157,7 +360,7 @@ show detach-on-fork
   <author>
     <name>neoni</name>
     <uri></uri>
-    <email>blue.snow013@163.com</email>
+    <email>chaos.dec@gmail.com</email>
   </author>
   <content type="html">
     &lt;p&gt;转自 &lt;a href=&quot;http://f0ol.github.io/2015/09/03/debug-kernel-with-vmware.html&quot;&gt;http://f0ol.github.io/2015/09/03/debug-kernel-with-vmware.html&lt;/a&gt;&lt;/p&gt;
@@ -227,7 +430,7 @@ debugStub.listen.guest32 &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span
   <author>
     <name>neoni</name>
     <uri></uri>
-    <email>blue.snow013@163.com</email>
+    <email>chaos.dec@gmail.com</email>
   </author>
   <content type="html">
     &lt;h3&gt;Reason: VMware Tools broken with gcc 5.1.0+&lt;/h3&gt;
@@ -268,7 +471,7 @@ debugStub.listen.guest32 &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span
   <author>
     <name>neoni</name>
     <uri></uri>
-    <email>blue.snow013@163.com</email>
+    <email>chaos.dec@gmail.com</email>
   </author>
   <content type="html">
     &lt;h2&gt;实现&lt;/h2&gt;

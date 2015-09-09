@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>/got-plt-research/</loc>
+    <lastmod>2015-09-09T10:50:17+08:00</lastmod>
+  </url>
+  <url>
     <loc>/debugging-forks/</loc>
     <lastmod>2015-09-08T10:47:56+08:00</lastmod>
   </url>
@@ -22,26 +26,26 @@
   </url>
   <url>
     <loc>/404.html</loc>
-    <lastmod>2015-09-08T12:12:51+08:00</lastmod>
+    <lastmod>2015-09-09T13:39:28+08:00</lastmod>
   </url>
   <url>
     <loc>/posts/</loc>
-    <lastmod>2015-09-08T12:12:51+08:00</lastmod>
+    <lastmod>2015-09-09T13:39:28+08:00</lastmod>
   </url>
   <url>
     <loc>/</loc>
-    <lastmod>2015-09-08T12:12:51+08:00</lastmod>
+    <lastmod>2015-09-09T13:39:28+08:00</lastmod>
   </url>
   <url>
     <loc>/tags/</loc>
-    <lastmod>2015-09-08T12:12:51+08:00</lastmod>
+    <lastmod>2015-09-09T13:39:28+08:00</lastmod>
   </url>
   <url>
     <loc>/about/</loc>
-    <lastmod>2015-09-08T12:12:51+08:00</lastmod>
+    <lastmod>2015-09-09T13:39:28+08:00</lastmod>
   </url>
   <url>
     <loc>/theme-setup/</loc>
-    <lastmod>2015-09-08T12:12:51+08:00</lastmod>
+    <lastmod>2015-09-09T13:39:28+08:00</lastmod>
   </url>
 </urlset>
