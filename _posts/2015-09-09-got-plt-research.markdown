@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ".got.plt Research"
-tags: [.dynamic, link_map]
+tags: [exploit, .dynamic, link_map]
 comments: true
 date: 2015-09-09T10:50:17+08:00
 ---
@@ -68,15 +68,15 @@ typedef struct {
 } Elf64_Dyn;
 ```
 
-对每一个有该类型的object，d_tag控制着d_un的解释。
+对每一个有该类型的object，d\_tag控制着d\_un的解释。
 
-* d_val
+* d\_val
   
-  那些Elf32_Word object描绘了具有不同解释的整形变量。
+  那些Elf32\_Word object描绘了具有不同解释的整形变量。
 
-* d_ptr
+* d\_ptr
   
-  那些Elf32_Word object描绘了程序的虚拟地址。就象以前提到的，在执行时，
+  那些Elf32\_Word object描绘了程序的虚拟地址。就象以前提到的，在执行时，
   文件的虚拟地址可能和内存虚拟地址不匹配。当解释包含在动态结构中的地址
   时是基于原始文件的值和内存的基地址。为了一致性，文件不包含在
   重定位入口来纠正在动态结构中的地址。
@@ -98,11 +98,11 @@ gdb-peda$ x/40xw 0x804af04
 ```
 ---
 
-## link_map
+## link\_map
 
-每个被加载入内存的so文件都会在内存中有一个link_map结构，并且整个进程地址空间中所有的这些map结构由r_debug为头组成一个链表，在知道了这个链表的起始地址之后，我们就可以遍历整个链表，得到可执行文件所有的加载so文件。
+每个被加载入内存的so文件都会在内存中有一个link\_map结构，并且整个进程地址空间中所有的这些map结构由r\_debug为头组成一个链表，在知道了这个链表的起始地址之后，我们就可以遍历整个链表，得到可执行文件所有的加载so文件。
 
-#### link_map 的结构
+#### link\_map 的结构
 
 ```C
 /* Structure describing a loaded shared object.  The `l_next' and `l_prev'
@@ -122,15 +122,15 @@ struct link_map
 };
 ```
 
-可以通过遍历link_map寻找库，对比l_name，找到目标之后，可以通过l_addr获得库的基址。
+可以通过遍历link\_map寻找库，对比l\_name，找到目标之后，可以通过l\_addr获得库的基址。
 
-#### DT\_DEBUG 寻找 link_map
+#### DT\_DEBUG 寻找 link\_map
 
 在linux下的动态加载器ld.so为一个可执行文件执行动态链接时，它会在动态链接完成之后，将可执行文件这个位置填充上整个进程的全局的一个debug信息的位置。
 
-还可以通过 DT\_DEBUG 来寻找 link_map
+还可以通过 DT\_DEBUG 来寻找 link\_map
 
-* 在 .dynamic 找到 DT_DEBUG (0x00000015) 的地址值
+* 在 .dynamic 找到 DT\_DEBUG (0x00000015) 的地址值
 
 * DT\_DEBUG 结构
         
@@ -168,7 +168,7 @@ struct r_debug
   };
 ```
   
-* 可以通过遍历link_map寻找库，对比l_name，找到目标之后，可以通过l_addr获得库的基址。
+* 可以通过遍历link\_map寻找库，对比l\_name，找到目标之后，可以通过l\_addr获得库的基址。
 
 ```python
 gdb-peda$ x/10xw 0x55575918
@@ -189,7 +189,7 @@ gdb-peda$ x/s 0x55575e90
 0x55575e90: "linux-gate.so.1"
 ```
 
-## _dl_runtime_resolver
+## \_dl\_runtime\_resolver
 
 在下一篇中介绍
 

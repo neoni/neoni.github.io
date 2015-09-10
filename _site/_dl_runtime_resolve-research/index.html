@@ -5,25 +5,25 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Latest Posts &#8211; Ever R In The Sun</title>
-<meta name="description" content="Describe this nonsense.">
-<meta name="keywords" content="Jekyll, theme, themes, responsive, blog, modern">
+<title>_dl_runtime_resolve Research &#8211; Ever R In The Sun</title>
+<meta name="description" content="Dying in the sun">
+<meta name="keywords" content="exploit, _dl_runtime_resolve, link_map">
 
 
 
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Latest Posts">
-<meta property="og:description" content="Describe this nonsense.">
-<meta property="og:url" content="/index.html">
+<meta property="og:title" content="_dl_runtime_resolve Research">
+<meta property="og:description" content="Dying in the sun">
+<meta property="og:url" content="/_dl_runtime_resolve-research/">
 <meta property="og:site_name" content="Ever R In The Sun">
 
 
 
 
 
-<link rel="canonical" href="/">
+<link rel="canonical" href="/_dl_runtime_resolve-research/">
 <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Ever R In The Sun Feed">
 
 <!-- http://t.co/dKP3o1e -->
@@ -59,7 +59,7 @@
 
 </head>
 
-<body id="post-index" class="feature">
+<body id="post" >
 
 <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
 <nav id="dl-menu" class="dl-menuwrapper" role="navigation">
@@ -104,28 +104,25 @@
 
 
 
-
 <div id="main" role="main">
-  
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2015-09-10T19:34:05+08:00"><a href="/_dl_runtime_resolve-research/">September 10, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About neoni">neoni</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
+  <article class="hentry">
+    <header class="header-title">
+      <div class="header-title-wrap">
         
-        Reading time ~9 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/_dl_runtime_resolve-research/" rel="bookmark" title="_dl_runtime_resolve Research" itemprop="url">_dl_runtime_resolve Research</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <h2>调试相关</h2>
+          <h1 class="entry-title"><a href="/_dl_runtime_resolve-research/" rel="bookmark" title="_dl_runtime_resolve Research">_dl_runtime_resolve Research</a></h1>
+        
+        <h2><span class="entry-date date published"><time datetime="2015-09-10T19:34:05+08:00">September 10, 2015</time></span></h2>
+        
+        <p class="entry-reading-time">
+          <i class="fa fa-clock-o"></i>
+          
+          Reading time ~9 minutes
+        </p><!-- /.entry-reading-time -->
+        
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content">
+      <h2>调试相关</h2>
 
 <p>安装libc debug symbol.</p>
 <div class="highlight"><pre><code class="language-sh" data-lang="sh">sudo apt-get install libc-dbg
@@ -372,456 +369,44 @@ sudo apt-get <span class="nb">source </span>libc6
 
 <p><a href="http://rk700.github.io/article/2015/08/09/return-to-dl-resolve/">ROP之return to dl-resolve</a></p>
 
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2015-09-09T10:50:17+08:00"><a href="/got-plt-research/">September 09, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About neoni">neoni</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
+      <footer class="entry-meta">
+        <span class="entry-tags"><a href="/tags/#exploit" title="Pages tagged exploit" class="tag"><span class="term">exploit</span></a><a href="/tags/#_dl_runtime_resolve" title="Pages tagged _dl_runtime_resolve" class="tag"><span class="term">_dl_runtime_resolve</span></a><a href="/tags/#link_map" title="Pages tagged link_map" class="tag"><span class="term">link_map</span></a></span>
         
-        Reading time ~5 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/got-plt-research/" rel="bookmark" title=".got.plt Research" itemprop="url">.got.plt Research</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>.got.plt的前3项，分别是<code>.dynamic</code>的地址，<code>link_map</code> 的地址和 <code>_dl_runtime_resolve</code> 的地址</p>
-
-<p>由此可以得到很多有用的信息</p>
-
-<h2>.dynamic</h2>
-
-<p>.dynamic 保存了动态链接器所需要的基本信息，比如依赖哪些共享对象、动态链接符号表的位置、动态链接重定位表的位置、共享对象初始化代码的地址等。</p>
-
-<p>使用 <code>readelf -d xxx</code> 可以查看 .dynamic</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">Dynamic</span> <span class="n">section</span> <span class="n">at</span> <span class="n">offset</span> <span class="mh">0x1f04</span> <span class="n">contains</span> <span class="mi">26</span> <span class="n">entries</span><span class="p">:</span>
-  <span class="n">Tag</span>        <span class="n">Type</span>                         <span class="n">Name</span><span class="o">/</span><span class="n">Value</span>
- <span class="mh">0x00000001</span> <span class="p">(</span><span class="n">NEEDED</span><span class="p">)</span>                     <span class="n">Shared</span> <span class="n">library</span><span class="p">:</span> <span class="p">[</span><span class="n">libncurses</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">5</span><span class="p">]</span>
- <span class="mh">0x00000001</span> <span class="p">(</span><span class="n">NEEDED</span><span class="p">)</span>                     <span class="n">Shared</span> <span class="n">library</span><span class="p">:</span> <span class="p">[</span><span class="n">libtinfo</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">5</span><span class="p">]</span>
- <span class="mh">0x00000001</span> <span class="p">(</span><span class="n">NEEDED</span><span class="p">)</span>                     <span class="n">Shared</span> <span class="n">library</span><span class="p">:</span> <span class="p">[</span><span class="n">libc</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">6</span><span class="p">]</span>
- <span class="mh">0x0000000c</span> <span class="p">(</span><span class="n">INIT</span><span class="p">)</span>                       <span class="mh">0x80486bc</span>
- <span class="mh">0x0000000d</span> <span class="p">(</span><span class="n">FINI</span><span class="p">)</span>                       <span class="mh">0x8049934</span>
- <span class="mh">0x00000019</span> <span class="p">(</span><span class="n">INIT_ARRAY</span><span class="p">)</span>                 <span class="mh">0x804aef8</span>
- <span class="mh">0x0000001b</span> <span class="p">(</span><span class="n">INIT_ARRAYSZ</span><span class="p">)</span>               <span class="mi">4</span> <span class="p">(</span><span class="nb">bytes</span><span class="p">)</span>
- <span class="mh">0x0000001a</span> <span class="p">(</span><span class="n">FINI_ARRAY</span><span class="p">)</span>                 <span class="mh">0x804aefc</span>
- <span class="mh">0x0000001c</span> <span class="p">(</span><span class="n">FINI_ARRAYSZ</span><span class="p">)</span>               <span class="mi">4</span> <span class="p">(</span><span class="nb">bytes</span><span class="p">)</span>
- <span class="mh">0x6ffffef5</span> <span class="p">(</span><span class="n">GNU_HASH</span><span class="p">)</span>                   <span class="mh">0x80481ac</span>
- <span class="mh">0x00000005</span> <span class="p">(</span><span class="n">STRTAB</span><span class="p">)</span>                     <span class="mh">0x8048400</span>
- <span class="mh">0x00000006</span> <span class="p">(</span><span class="n">SYMTAB</span><span class="p">)</span>                     <span class="mh">0x80481f0</span>
- <span class="mh">0x0000000a</span> <span class="p">(</span><span class="n">STRSZ</span><span class="p">)</span>                      <span class="mi">393</span> <span class="p">(</span><span class="nb">bytes</span><span class="p">)</span>
- <span class="mh">0x0000000b</span> <span class="p">(</span><span class="n">SYMENT</span><span class="p">)</span>                     <span class="mi">16</span> <span class="p">(</span><span class="nb">bytes</span><span class="p">)</span>
- <span class="mh">0x00000015</span> <span class="p">(</span><span class="n">DEBUG</span><span class="p">)</span>                      <span class="mh">0x0</span>
- <span class="mh">0x00000003</span> <span class="p">(</span><span class="n">PLTGOT</span><span class="p">)</span>                     <span class="mh">0x804b000</span>
- <span class="mh">0x00000002</span> <span class="p">(</span><span class="n">PLTRELSZ</span><span class="p">)</span>                   <span class="mi">168</span> <span class="p">(</span><span class="nb">bytes</span><span class="p">)</span>
- <span class="mh">0x00000014</span> <span class="p">(</span><span class="n">PLTREL</span><span class="p">)</span>                     <span class="n">REL</span>
- <span class="mh">0x00000017</span> <span class="p">(</span><span class="n">JMPREL</span><span class="p">)</span>                     <span class="mh">0x8048614</span>
- <span class="mh">0x00000011</span> <span class="p">(</span><span class="n">REL</span><span class="p">)</span>                        <span class="mh">0x80485fc</span>
- <span class="mh">0x00000012</span> <span class="p">(</span><span class="n">RELSZ</span><span class="p">)</span>                      <span class="mi">24</span> <span class="p">(</span><span class="nb">bytes</span><span class="p">)</span>
- <span class="mh">0x00000013</span> <span class="p">(</span><span class="n">RELENT</span><span class="p">)</span>                     <span class="mi">8</span> <span class="p">(</span><span class="nb">bytes</span><span class="p">)</span>
- <span class="mh">0x6ffffffe</span> <span class="p">(</span><span class="n">VERNEED</span><span class="p">)</span>                    <span class="mh">0x80485cc</span>
- <span class="mh">0x6fffffff</span> <span class="p">(</span><span class="n">VERNEEDNUM</span><span class="p">)</span>                 <span class="mi">1</span>
- <span class="mh">0x6ffffff0</span> <span class="p">(</span><span class="n">VERSYM</span><span class="p">)</span>                     <span class="mh">0x804858a</span>
- <span class="mh">0x00000000</span> <span class="p">(</span><span class="n">NULL</span><span class="p">)</span>                       <span class="mh">0x0</span>
-</code></pre></div>
-<h4>.dynamic 的结构</h4>
-<div class="highlight"><pre><code class="language-C" data-lang="C"><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
-        <span class="n">Elf32_Sword</span> <span class="n">d_tag</span><span class="p">;</span>
-        <span class="k">union</span> <span class="p">{</span>
-                <span class="n">Elf32_Word</span>      <span class="n">d_val</span><span class="p">;</span>
-                <span class="n">Elf32_Addr</span>      <span class="n">d_ptr</span><span class="p">;</span>
-                <span class="n">Elf32_Off</span>       <span class="n">d_off</span><span class="p">;</span>
-        <span class="p">}</span> <span class="n">d_un</span><span class="p">;</span>
-<span class="p">}</span> <span class="n">Elf32_Dyn</span><span class="p">;</span>
-
-<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
-        <span class="n">Elf64_Xword</span> <span class="n">d_tag</span><span class="p">;</span>
-        <span class="k">union</span> <span class="p">{</span>
-                <span class="n">Elf64_Xword</span>     <span class="n">d_val</span><span class="p">;</span>
-                <span class="n">Elf64_Addr</span>      <span class="n">d_ptr</span><span class="p">;</span>
-        <span class="p">}</span> <span class="n">d_un</span><span class="p">;</span>
-<span class="p">}</span> <span class="n">Elf64_Dyn</span><span class="p">;</span>
-</code></pre></div>
-<p>对每一个有该类型的object，d_tag控制着d_un的解释。</p>
-
-<ul>
-<li>d_val</li>
-</ul>
-
-<p>那些Elf32_Word object描绘了具有不同解释的整形变量。</p>
-
-<ul>
-<li>d_ptr</li>
-</ul>
-
-<p>那些Elf32_Word object描绘了程序的虚拟地址。就象以前提到的，在执行时，
-  文件的虚拟地址可能和内存虚拟地址不匹配。当解释包含在动态结构中的地址
-  时是基于原始文件的值和内存的基地址。为了一致性，文件不包含在
-  重定位入口来纠正在动态结构中的地址。</p>
-
-<h4>在gdb中查看 .dynamic 的内容</h4>
-
-<p>可以看到 <code>0x0000000c (INIT) 0x80486bc</code> 在 0x804af1c 中相对应</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">gdb</span><span class="o">-</span><span class="n">peda</span><span class="err">$</span> <span class="n">x</span><span class="o">/</span><span class="mi">40</span><span class="n">xw</span> <span class="mh">0x804af04</span>
-<span class="mh">0x804af04</span><span class="p">:</span>  <span class="mh">0x00000001</span>  <span class="mh">0x00000001</span>  <span class="mh">0x00000001</span>  <span class="mh">0x000000e0</span>
-<span class="mh">0x804af14</span><span class="p">:</span>  <span class="mh">0x00000001</span>  <span class="mh">0x000000ee</span>  <span class="mh">0x0000000c</span>  <span class="mh">0x080486bc</span>
-<span class="mh">0x804af24</span><span class="p">:</span>  <span class="mh">0x0000000d</span>  <span class="mh">0x08049934</span>  <span class="mh">0x00000019</span>  <span class="mh">0x0804aef8</span>
-<span class="mh">0x804af34</span><span class="p">:</span>  <span class="mh">0x0000001b</span>  <span class="mh">0x00000004</span>  <span class="mh">0x0000001a</span>  <span class="mh">0x0804aefc</span>
-<span class="mh">0x804af44</span><span class="p">:</span>  <span class="mh">0x0000001c</span>  <span class="mh">0x00000004</span>  <span class="mh">0x6ffffef5</span>  <span class="mh">0x080481ac</span>
-<span class="mh">0x804af54</span><span class="p">:</span>  <span class="mh">0x00000005</span>  <span class="mh">0x08048400</span>  <span class="mh">0x00000006</span>  <span class="mh">0x080481f0</span>
-<span class="mh">0x804af64</span><span class="p">:</span>  <span class="mh">0x0000000a</span>  <span class="mh">0x00000189</span>  <span class="mh">0x0000000b</span>  <span class="mh">0x00000010</span>
-<span class="mh">0x804af74</span><span class="p">:</span>  <span class="mh">0x00000015</span>  <span class="mh">0x55575918</span>  <span class="mh">0x00000003</span>  <span class="mh">0x0804b000</span>
-</code></pre></div>
-<hr>
-
-<h2>link_map</h2>
-
-<p>每个被加载入内存的so文件都会在内存中有一个link_map结构，并且整个进程地址空间中所有的这些map结构由r_debug为头组成一个链表，在知道了这个链表的起始地址之后，我们就可以遍历整个链表，得到可执行文件所有的加载so文件。</p>
-
-<h4>link_map 的结构</h4>
-<div class="highlight"><pre><code class="language-C" data-lang="C"><span class="cm">/* Structure describing a loaded shared object.  The `l_next&#39; and `l_prev&#39;</span>
-<span class="cm">   members form a chain of all the shared objects loaded at startup.</span>
-<span class="cm">   These data structures exist in space used by the run-time dynamic linker;</span>
-<span class="cm">   modifying them may have disastrous results.  */</span>
-<span class="k">struct</span> <span class="n">link_map</span>
-<span class="p">{</span>
-    <span class="cm">/* These first few members are part of the protocol with the debugger.</span>
-<span class="cm">       This is the same format used in SVR4.  */</span>
-
-    <span class="n">ElfW</span><span class="p">(</span><span class="n">Addr</span><span class="p">)</span> <span class="n">l_addr</span><span class="p">;</span>          <span class="cm">/* Difference between the address in the ELF</span>
-<span class="cm">                                   file and the addresses in memory.  */</span>
-    <span class="kt">char</span> <span class="o">*</span><span class="n">l_name</span><span class="p">;</span>               <span class="cm">/* Absolute file name object was found in.  */</span>
-    <span class="n">ElfW</span><span class="p">(</span><span class="n">Dyn</span><span class="p">)</span> <span class="o">*</span><span class="n">l_ld</span><span class="p">;</span>            <span class="cm">/* Dynamic section of the shared object.  */</span>
-    <span class="k">struct</span> <span class="n">link_map</span> <span class="o">*</span><span class="n">l_next</span><span class="p">,</span> <span class="o">*</span><span class="n">l_prev</span><span class="p">;</span> <span class="cm">/* Chain of loaded objects.  */</span>
-<span class="p">};</span>
-</code></pre></div>
-<p>可以通过遍历link_map寻找库，对比l_name，找到目标之后，可以通过l_addr获得库的基址。</p>
-
-<h4>DT_DEBUG 寻找 link_map</h4>
-
-<p>在linux下的动态加载器ld.so为一个可执行文件执行动态链接时，它会在动态链接完成之后，将可执行文件这个位置填充上整个进程的全局的一个debug信息的位置。</p>
-
-<p>还可以通过 DT_DEBUG 来寻找 link_map</p>
-
-<ul>
-<li><p>在 .dynamic 找到 DT_DEBUG (0x00000015) 的地址值</p></li>
-<li><p>DT_DEBUG 结构</p>
-
-<p>可以看到 link_map 是 DT_DEBUG 的第二个元素 </p></li>
-</ul>
-<div class="highlight"><pre><code class="language-C" data-lang="C"><span class="cm">/* Rendezvous structure used by the run-time dynamic linker to communicate</span>
-<span class="cm">   details of shared object loading to the debugger.  If the executable&#39;s</span>
-<span class="cm">   dynamic section has a DT_DEBUG element, the run-time linker sets that</span>
-<span class="cm">   element&#39;s value to the address where this structure can be found.  */</span>
-
-<span class="k">struct</span> <span class="n">r_debug</span>
-  <span class="p">{</span> 
-    <span class="kt">int</span> <span class="n">r_version</span><span class="p">;</span>              <span class="cm">/* Version number for this protocol.  */</span>
-
-    <span class="k">struct</span> <span class="n">link_map</span> <span class="o">*</span><span class="n">r_map</span><span class="p">;</span>     <span class="cm">/* Head of the chain of loaded objects.  */</span>
-
-    <span class="cm">/* This is the address of a function internal to the run-time linker,</span>
-<span class="cm">       that will always be called when the linker begins to map in a</span>
-<span class="cm">       library or unmap it, and again when the mapping change is complete.</span>
-<span class="cm">       The debugger can set a breakpoint at this address if it wants to</span>
-<span class="cm">       notice shared object mapping changes.  */</span>
-    <span class="n">ElfW</span><span class="p">(</span><span class="n">Addr</span><span class="p">)</span> <span class="n">r_brk</span><span class="p">;</span>
-    <span class="k">enum</span>
-      <span class="p">{</span> 
-        <span class="cm">/* This state value describes the mapping change taking place when</span>
-<span class="cm">           the `r_brk&#39; address is called.  */</span>
-        <span class="n">RT_CONSISTENT</span><span class="p">,</span>          <span class="cm">/* Mapping change is complete.  */</span>
-        <span class="n">RT_ADD</span><span class="p">,</span>                 <span class="cm">/* Beginning to add a new object.  */</span>
-        <span class="n">RT_DELETE</span>               <span class="cm">/* Beginning to remove an object mapping.  */</span>
-      <span class="p">}</span> <span class="n">r_state</span><span class="p">;</span>
-
-    <span class="n">ElfW</span><span class="p">(</span><span class="n">Addr</span><span class="p">)</span> <span class="n">r_ldbase</span><span class="p">;</span>        <span class="cm">/* Base address the linker is loaded at.  */</span>
-  <span class="p">};</span>
-</code></pre></div>
-<ul>
-<li>可以通过遍历link_map寻找库，对比l_name，找到目标之后，可以通过l_addr获得库的基址。</li>
-</ul>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">gdb</span><span class="o">-</span><span class="n">peda</span><span class="err">$</span> <span class="n">x</span><span class="o">/</span><span class="mi">10</span><span class="n">xw</span> <span class="mh">0x55575918</span>
-<span class="mh">0x55575918</span> <span class="o">&lt;</span><span class="n">_r_debug</span><span class="o">&gt;</span><span class="p">:</span>  <span class="mh">0x00000001</span>  <span class="mh">0x55575930</span>  <span class="mh">0x55564090</span>  <span class="mh">0x00000000</span>
-<span class="mh">0x55575928</span> <span class="o">&lt;</span><span class="n">_r_debug</span><span class="o">+</span><span class="mi">16</span><span class="o">&gt;</span><span class="p">:</span>   <span class="mh">0x55555000</span>  <span class="mh">0x00000000</span>  <span class="mh">0x00000000</span>  <span class="mh">0x55575c1c</span>
-<span class="mh">0x55575938</span><span class="p">:</span> <span class="mh">0x0804af04</span>  <span class="mh">0x55575c20</span>
-<span class="n">gdb</span><span class="o">-</span><span class="n">peda</span><span class="err">$</span> <span class="n">x</span><span class="o">/</span><span class="mi">10</span><span class="n">xw</span> <span class="mh">0x55575930</span>
-<span class="mh">0x55575930</span><span class="p">:</span> <span class="mh">0x00000000</span>  <span class="mh">0x55575c1c</span>  <span class="mh">0x0804af04</span>  <span class="mh">0x55575c20</span>
-<span class="mh">0x55575940</span><span class="p">:</span> <span class="mh">0x00000000</span>  <span class="mh">0x55575930</span>  <span class="mh">0x00000000</span>  <span class="mh">0x55575c10</span>
-<span class="mh">0x55575950</span><span class="p">:</span> <span class="mh">0x00000000</span>  <span class="mh">0x0804af14</span>
-<span class="n">gdb</span><span class="o">-</span><span class="n">peda</span><span class="err">$</span> <span class="n">x</span><span class="o">/</span><span class="n">s</span> <span class="mh">0x55575c1c</span>
-<span class="mh">0x55575c1c</span><span class="p">:</span> <span class="s">&quot;&quot;</span>
-<span class="n">gdb</span><span class="o">-</span><span class="n">peda</span><span class="err">$</span> <span class="n">x</span><span class="o">/</span><span class="mi">10</span><span class="n">xw</span> <span class="mh">0x55575c20</span>
-<span class="mh">0x55575c20</span><span class="p">:</span> <span class="mh">0x55578000</span>  <span class="mh">0x55575e90</span>  <span class="mh">0x55578278</span>  <span class="mh">0x5557a8e8</span>
-<span class="mh">0x55575c30</span><span class="p">:</span> <span class="mh">0x55575930</span>  <span class="mh">0x55575c20</span>  <span class="mh">0x00000000</span>  <span class="mh">0x55575e80</span>
-<span class="mh">0x55575c40</span><span class="p">:</span> <span class="mh">0x00000000</span>  <span class="mh">0x00000000</span>
-<span class="n">gdb</span><span class="o">-</span><span class="n">peda</span><span class="err">$</span> <span class="n">x</span><span class="o">/</span><span class="n">s</span> <span class="mh">0x55575e90</span>
-<span class="mh">0x55575e90</span><span class="p">:</span> <span class="s">&quot;linux-gate.so.1&quot;</span>
-</code></pre></div>
-<h2>_dl_runtime_resolver</h2>
-
-<p>在下一篇中介绍</p>
-
-<h2>参考</h2>
-
-<p><a href="http://docs.oracle.com/cd/E23824_01/html/819-0690/chapter6-42444.html#scrolltoc">Dynamic Section</a></p>
-
-<p><a href="http://linux.chinaunix.net/techdoc/system/2008/01/28/977695.shtml">elf文件类型六 Dynamic Section（动态section）</a></p>
-
-<p><a href="http://rk700.github.io/article/2015/04/09/dt_debug-read/">通过DT_DEBUG来获得各个库的基址</a></p>
-
-<p><a href="http://tsecer.blog.163.com/blog/static/15018172013924104112444/">gdb对attach和core文件的处理方式</a></p>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2015-09-08T10:47:56+08:00"><a href="/debugging-forks/">September 08, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About neoni">neoni</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~5 minutes
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/debugging-forks/" rel="bookmark" title="Debugging Forks" itemprop="url">Debugging Forks</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <h3>debug the parent process and the child process</h3>
-
-<p>By default, when a program forks, gdb will continue to debug the parent process and the child process will run unimpeded.</p>
-
-<p>If you want to follow the child process instead of the parent process, use the command set <code>follow-fork-mode</code>.</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">set</span> <span class="n">follow</span><span class="o">-</span><span class="n">fork</span><span class="o">-</span><span class="n">mode</span> <span class="n">mode</span>
-    <span class="n">Set</span> <span class="n">the</span> <span class="n">debugger</span> <span class="n">response</span> <span class="n">to</span> <span class="n">a</span> <span class="n">program</span> <span class="n">call</span> <span class="n">of</span> <span class="n">fork</span> <span class="ow">or</span> <span class="n">vfork</span><span class="o">.</span> <span class="n">A</span> <span class="n">call</span> <span class="n">to</span> <span class="n">fork</span> <span class="ow">or</span> <span class="n">vfork</span> <span class="n">creates</span> <span class="n">a</span> <span class="n">new</span> <span class="n">process</span><span class="o">.</span>  
-    <span class="n">The</span> <span class="n">mode</span> <span class="n">argument</span> <span class="n">can</span> <span class="n">be</span><span class="p">:</span>
-    <span class="n">parent</span>
-        <span class="n">The</span> <span class="n">original</span> <span class="n">process</span> <span class="ow">is</span> <span class="n">debugged</span> <span class="n">after</span> <span class="n">a</span> <span class="n">fork</span><span class="o">.</span> <span class="n">The</span> <span class="n">child</span> <span class="n">process</span> <span class="n">runs</span> <span class="n">unimpeded</span><span class="o">.</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">default</span><span class="o">.</span>
-    <span class="n">child</span>
-        <span class="n">The</span> <span class="n">new</span> <span class="n">process</span> <span class="ow">is</span> <span class="n">debugged</span> <span class="n">after</span> <span class="n">a</span> <span class="n">fork</span><span class="o">.</span> <span class="n">The</span> <span class="n">parent</span> <span class="n">process</span> <span class="n">runs</span> <span class="n">unimpeded</span><span class="o">.</span> 
-
-<span class="n">show</span> <span class="n">follow</span><span class="o">-</span><span class="n">fork</span><span class="o">-</span><span class="n">mode</span>
-    <span class="n">Display</span> <span class="n">the</span> <span class="n">current</span> <span class="n">debugger</span> <span class="n">response</span> <span class="n">to</span> <span class="n">a</span> <span class="n">fork</span> <span class="ow">or</span> <span class="n">vfork</span> <span class="n">call</span><span class="o">.</span> 
-</code></pre></div>
-<p>On Linux, if you want to debug both the parent and child processes, use the command set <code>detach-on-fork</code>.</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">set detach-on-fork mode
-    Tells gdb whether to detach one of the processes after a fork, or retain debugger control over them both.
-    on
-        The child process (or parent process, depending on the value of follow-fork-mode) will be detached and allowed to run independently. This is the default.
-    off
-        Both processes will be held under the control of gdb. One process (child or parent, depending on the value of follow-fork-mode) is debugged as usual, while the other is held suspended. 
-
-show detach-on-fork
-    Show whether detach-on-fork mode is on/off. 
-</code></pre></div>
-<p>If you choose to set <code>detach-on-fork</code> mode off, then gdb will retain control of all forked processes (including nested forks). </p>
-
-<hr>
-
-<h3>switch between process</h3>
-
-<p>You can list the forked processes under the control of gdb by using the <code>info inferiors</code> command, and switch from one fork to another by using the inferior command.</p>
-
-<p>To quit debugging one of the forked processes, you can either detach from it by using the <code>detach inferiors</code> command (allowing it to run independently), or kill it using the <code>kill inferiors</code> command. </p>
-
-<p>see <a href="https://sourceware.org/gdb/onlinedocs/gdb/Inferiors-and-Programs.html#Inferiors-and-Programs">Debugging Multiple Inferiors and Programs</a></p>
-
-<hr>
-
-<h3>debug exec mode</h3>
-
-<p>If you ask to debug a child process and a vfork is followed by an exec, gdb executes the new target up to the first breakpoint in the new target. If you have a breakpoint set on main in your original program, the breakpoint will also be set on the child process&#39;s main.</p>
-
-<p>On some systems, when a child process is spawned by vfork, you cannot debug the child or parent until an exec call completes.</p>
-
-<p>If you issue a run command to gdb after an exec call executes, the new target restarts. To restart the parent process, use the <code>file</code> command with the parent executable name as its argument. </p>
-
-<p>By default, after an exec call executes, gdb discards the symbols of the previous executable image. You can change this behaviour with the set <code>follow-exec-mode</code> command.</p>
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="nb">set</span> <span class="n">follow</span><span class="o">-</span><span class="k">exec</span><span class="o">-</span><span class="n">mode</span> <span class="n">mode</span>
-    <span class="n">Set</span> <span class="n">debugger</span> <span class="n">response</span> <span class="n">to</span> <span class="n">a</span> <span class="n">program</span> <span class="n">call</span> <span class="n">of</span> <span class="k">exec</span><span class="o">.</span> <span class="n">An</span> <span class="k">exec</span> <span class="n">call</span> <span class="n">replaces</span> <span class="n">the</span> <span class="n">program</span> <span class="n">image</span> <span class="n">of</span> <span class="n">a</span> <span class="n">process</span><span class="o">.</span>
-    <span class="n">follow</span><span class="o">-</span><span class="k">exec</span><span class="o">-</span><span class="n">mode</span> <span class="n">can</span> <span class="n">be</span><span class="p">:</span>
-    <span class="n">new</span>
-        <span class="n">gdb</span> <span class="n">creates</span> <span class="n">a</span> <span class="n">new</span> <span class="n">inferior</span> <span class="ow">and</span> <span class="n">rebinds</span> <span class="n">the</span> <span class="n">process</span> <span class="n">to</span> <span class="n">this</span> <span class="n">new</span> <span class="n">inferior</span><span class="o">.</span> <span class="n">The</span> <span class="n">program</span> <span class="n">the</span> <span class="n">process</span> <span class="n">was</span> <span class="n">running</span> <span class="n">before</span> <span class="n">the</span> <span class="k">exec</span> <span class="n">call</span> <span class="n">can</span> <span class="n">be</span> <span class="n">restarted</span> <span class="n">afterwards</span> <span class="n">by</span> <span class="n">restarting</span> <span class="n">the</span> <span class="n">original</span> <span class="n">inferior</span><span class="o">.</span>
-        <span class="n">For</span> <span class="n">example</span><span class="p">:</span>
-                       <span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">info</span> <span class="n">inferiors</span>
-                       <span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">info</span> <span class="n">inferior</span>
-                         <span class="n">Id</span>   <span class="n">Description</span>   <span class="n">Executable</span>
-                       <span class="o">*</span> <span class="mi">1</span>    <span class="o">&lt;</span><span class="n">null</span><span class="o">&gt;</span>        <span class="n">prog1</span>
-                       <span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">run</span>
-                       <span class="n">process</span> <span class="mi">12020</span> <span class="ow">is</span> <span class="n">executing</span> <span class="n">new</span> <span class="n">program</span><span class="p">:</span> <span class="n">prog2</span>
-                       <span class="n">Program</span> <span class="n">exited</span> <span class="n">normally</span><span class="o">.</span>
-                       <span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">info</span> <span class="n">inferiors</span>
-                         <span class="n">Id</span>   <span class="n">Description</span>   <span class="n">Executable</span>
-                       <span class="o">*</span> <span class="mi">2</span>    <span class="o">&lt;</span><span class="n">null</span><span class="o">&gt;</span>        <span class="n">prog2</span>
-                         <span class="mi">1</span>    <span class="o">&lt;</span><span class="n">null</span><span class="o">&gt;</span>        <span class="n">prog1</span>
-    <span class="n">same</span>
-        <span class="n">gdb</span> <span class="n">keeps</span> <span class="n">the</span> <span class="n">process</span> <span class="n">bound</span> <span class="n">to</span> <span class="n">the</span> <span class="n">same</span> <span class="n">inferior</span><span class="o">.</span> <span class="n">The</span> <span class="n">new</span> <span class="n">executable</span> <span class="n">image</span> <span class="n">replaces</span> <span class="n">the</span> <span class="n">previous</span> <span class="n">executable</span> <span class="n">loaded</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">inferior</span><span class="o">.</span> <span class="n">Restarting</span> <span class="n">the</span> <span class="n">inferior</span> <span class="n">after</span> <span class="n">the</span> <span class="k">exec</span> <span class="n">call</span><span class="p">,</span> <span class="k">with</span> <span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="n">the</span> <span class="n">run</span> <span class="n">command</span><span class="p">,</span> <span class="n">restarts</span> <span class="n">the</span> <span class="n">executable</span> <span class="n">the</span> <span class="n">process</span> <span class="n">was</span> <span class="n">running</span> <span class="n">after</span> <span class="n">the</span> <span class="k">exec</span> <span class="n">call</span><span class="o">.</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">default</span> <span class="n">mode</span><span class="o">.</span>
-        <span class="n">For</span> <span class="n">example</span><span class="p">:</span>
-                       <span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">info</span> <span class="n">inferiors</span>
-                         <span class="n">Id</span>   <span class="n">Description</span>   <span class="n">Executable</span>
-                       <span class="o">*</span> <span class="mi">1</span>    <span class="o">&lt;</span><span class="n">null</span><span class="o">&gt;</span>        <span class="n">prog1</span>
-                       <span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">run</span>
-                       <span class="n">process</span> <span class="mi">12020</span> <span class="ow">is</span> <span class="n">executing</span> <span class="n">new</span> <span class="n">program</span><span class="p">:</span> <span class="n">prog2</span>
-                       <span class="n">Program</span> <span class="n">exited</span> <span class="n">normally</span><span class="o">.</span>
-                       <span class="p">(</span><span class="n">gdb</span><span class="p">)</span> <span class="n">info</span> <span class="n">inferiors</span>
-                         <span class="n">Id</span>   <span class="n">Description</span>   <span class="n">Executable</span>
-                       <span class="o">*</span> <span class="mi">1</span>    <span class="o">&lt;</span><span class="n">null</span><span class="o">&gt;</span>        <span class="n">prog2</span>
-</code></pre></div>
-<p>You can use the catch command to make gdb stop whenever a fork, vfork, or exec call is made. See Setting Catchpoints. </p>
-
-<h3>Ref</h3>
-
-<p><a href="https://sourceware.org/gdb/onlinedocs/gdb/Forks.html">Debugging Forks</a></p>
-
-<p><a href="https://sourceware.org/gdb/onlinedocs/gdb/Inferiors-and-Programs.html#Inferiors-and-Programs">Debugging Multiple Inferiors and Programs</a></p>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2015-09-05T21:00:36+08:00"><a href="/ptrace-with-suid-program/">September 05, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About neoni">neoni</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/ptrace-with-suid-program/" rel="bookmark" title="Suid program can't work with ptrace" itemprop="url">Suid program can't work with ptrace</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>If we resume the process with PTRACE_CONT without detaching works and parent process doesn&#39;t terminated, it will work like in the gdb, then suid will not work. So we have to detach the work at first.</p>
-
-<p>PTRACE_DETACH is a restarting operation; therefore it requires the tracee to be in ptrace-stop. If the tracee is in signal-delivery- stop, a signal can be injected. Otherwise, the sig parameter may be silently ignored.</p>
-<div class="highlight"><pre><code class="language-C" data-lang="C"><span class="n">ptrace</span><span class="p">(</span><span class="n">PTRACE_CONT</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-<span class="n">kill</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">SIGSTOP</span><span class="p">);</span>
-<span class="n">waitpid</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-<span class="kt">int</span> <span class="n">erro</span> <span class="o">=</span> <span class="n">ptrace</span><span class="p">(</span><span class="n">PT_DETACH</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
-<span class="n">printf</span><span class="p">(</span><span class="s">&quot;ret: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">erro</span><span class="p">);</span>
-</code></pre></div>
-<h3>Ref</h3>
-
-<p><a href="http://stackoverflow.com/questions/20510300/ptrace-detach-fails-after-ptrace-cont-with-errno-esrch">PTRACE<em>DETACH fails after PTRACE</em>CONT with errno=ESRCH</a></p>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-<article class="hentry">
-  <header>
-    
-    <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2015-09-03T23:08:56+08:00"><a href="/debug-kernel-with-vmware/">September 03, 2015</a></time></span><span class="author vcard"><span class="fn"><a href="/about/" title="About neoni">neoni</a></span></span>
-      
-      <span class="entry-reading-time">
-        <i class="fa fa-clock-o"></i>
-        
-        Reading time ~1 minute
-      </span><!-- /.entry-reading-time -->
-      
-    </div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title"><a href="/debug-kernel-with-vmware/" rel="bookmark" title="[转]使用Vmware调试Linux内核" itemprop="url">[转]使用Vmware调试Linux内核</a></h1>
-    
-  </header>
-  <div class="entry-content">
-    <p>转自 <a href="http://f0ol.github.io/2015/09/03/debug-kernel-with-vmware.html">http://f0ol.github.io/2015/09/03/debug-kernel-with-vmware.html</a></p>
-
-<p>之前调试内核使用的是kgdb，需要自己编译内核加入kgdb的支持，
-这样就没办法调试现有的发行版自带的内核。qemu支持gdbstub，
-但是qemu对虚拟机的管理不是特别方便，并且在Mac OS下无法开
-启kvm，运行速度慢。bochs和VirtualBox都内建有调试器，bochs
-是纯模拟器，运行速度慢，VirtualBox内建的调试器功能不是特
-别完善。Vmware支持gdbstub，调试内核时比前面的模拟器/虚拟机
-方便许多。</p>
-
-<h2>虚拟机配置</h2>
-
-<p>修改需要调试的虚拟机的.vmx配置文件，加入下面两行：</p>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh">debugStub.listen.guest64 <span class="o">=</span> <span class="s2">&quot;TRUE&quot;</span>
-debugStub.listen.guest32 <span class="o">=</span> <span class="s2">&quot;TRUE&quot;</span>
-</code></pre></div>
-<p>启动虚拟机。</p>
-
-<h2>使用gdb附加</h2>
-
-<p>在主机上打开gdb，加载带符号的内核，然后输入：</p>
-<div class="highlight"><pre><code class="language-sh" data-lang="sh">target remote :8864
-</code></pre></div>
-<p>32位cpu对应的是8832端口。假如有多个虚拟机开着debugStub，
-端口号依次增加。</p>
-
-<p>连接成功后就可以调试了。</p>
-
-<h2>源码级调试</h2>
-
-<p>Ubuntu带符号的内核在 http://ddebs.ubuntu.com/pool/main/l/linux/ 下载。
-对应的源码在 http://mirrors.aliyun.com/ubuntu/pool/main/l/linux/ 中搜索
-<code>linux-source</code>，下载对应版本的deb包。下载的deb包使用<code>dpkg -X</code>解包。</p>
-
-<p>下载之后使用gdb加载带符号的内核，<code>set substitute-path</code>修改源码路径，
-就可以在源码级别对内核进行调试了。</p>
-
-<h2>其他</h2>
-
-<p>Vmware的debugStub功能没有正式的官方文档，下面记录一下自己
-使用时候的一些经验。</p>
-
-<ul>
-<li><p>使用<code>monitor r</code>命令可以看idt、gdt、msr等寄存器。</p></li>
-<li><p>不仅能调试Linux内核，还能调试bootloader、Windows内核，
-调试Windows内核时可以写程序将Windows的符号转换成gdb能
-识别的格式，以方便调试。</p></li>
-<li><p>不清楚Vmware使用的是硬件断点还是软件断点，有时候下多于
-4个断点的时候会出现不能单步的问题。</p></li>
-<li><p>Vmware还有catchpoint这样比较高级的功能，可以在一个地方做个镜像，
-之后可以恢复到对应的状态。</p></li>
-</ul>
-
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-
-<div class="pagination">
-  
-    Previous
-  
-  <ul class="inline-list">
-    <li>
-      
-        <span class="current-page">1</span>
-      
-    </li>
-    
-      <li>
-        
-          <a href="/page2">2</a>
-        
-      </li>
-    
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=/_dl_runtime_resolve-research/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=/_dl_runtime_resolve-research/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=/_dl_runtime_resolve-research/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
   </ul>
+</div><!-- /.social-share -->
+      </footer>
+    </div><!-- /.entry-content -->
+    <section id="disqus_thread"></section><!-- /#disqus_thread -->
+    <div class="read-more">
   
-    <a href="/page2" class="btn">Next</a>
+    <div class="read-more-header">
+      <a href="/got-plt-research/" class="read-more-btn">Read More</a>
+    </div><!-- /.read-more-header -->
+    <div class="read-more-content">
+      <h3><a href="/got-plt-research/" title=".got.plt Research">.got.plt Research</a></h3>
+      <p>.got.plt的前3项，分别是.dynamic的地址，link_map 的地址和 _dl_runtime_resolve 的地址由此可以得到很多有用的信息.dynamic.dynamic 保存了动态链接器所需要的基本信息，比如依赖哪些共享对象、动态链接符号表的位置、动态链...&hellip; <a href="/got-plt-research/">Continue reading</a></p>
+    </div><!-- /.read-more-content -->
   
-</div><!-- /.pagination -->
+  <div class="read-more-list">
+    
+      <div class="list-item">
+        <h4><a href="/debugging-forks/" title="Debugging Forks">Debugging Forks</a></h4>
+        <span>Published on September 08, 2015</span>
+      </div><!-- /.list-item -->
+    
+      <div class="list-item">
+        <h4><a href="/ptrace-with-suid-program/" title="Suid program can't work with ptrace">Suid program can't work with ptrace</a></h4>
+        <span>Published on September 05, 2015</span>
+      </div><!-- /.list-item -->
+    
+  </div><!-- /.read-more-list -->
+</div><!-- /.read-more -->
+  </article>
 </div><!-- /#main -->
 
 <div class="footer-wrapper">
@@ -848,7 +433,29 @@ debugStub.listen.guest32 <span class="o">=</span> <span class="s2">&quot;TRUE&qu
 </script>
 
 
-          
+
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'neoni'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	        
 
 </body>
 </html>

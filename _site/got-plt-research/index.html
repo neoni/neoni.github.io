@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <title>.got.plt Research &#8211; Ever R In The Sun</title>
 <meta name="description" content="Dying in the sun">
-<meta name="keywords" content=".dynamic, link_map">
+<meta name="keywords" content="exploit, .dynamic, link_map">
 
 
 
@@ -83,7 +83,7 @@
 				
 				
 				<li>
-					<a href="http://github.com/https://github.com/neoni"><i class="fa fa-fw fa-github"></i> GitHub</a>
+					<a href="http://github.com/neoni"><i class="fa fa-fw fa-github"></i> GitHub</a>
 				</li>
 				
 				
@@ -178,7 +178,7 @@
         <span class="p">}</span> <span class="n">d_un</span><span class="p">;</span>
 <span class="p">}</span> <span class="n">Elf64_Dyn</span><span class="p">;</span>
 </code></pre></div>
-<p>对每一个有该类型的object，d<em>tag控制着d</em>un的解释。</p>
+<p>对每一个有该类型的object，d_tag控制着d_un的解释。</p>
 
 <ul>
 <li>d_val</li>
@@ -212,7 +212,7 @@
 
 <h2>link_map</h2>
 
-<p>每个被加载入内存的so文件都会在内存中有一个link<em>map结构，并且整个进程地址空间中所有的这些map结构由r</em>debug为头组成一个链表，在知道了这个链表的起始地址之后，我们就可以遍历整个链表，得到可执行文件所有的加载so文件。</p>
+<p>每个被加载入内存的so文件都会在内存中有一个link_map结构，并且整个进程地址空间中所有的这些map结构由r_debug为头组成一个链表，在知道了这个链表的起始地址之后，我们就可以遍历整个链表，得到可执行文件所有的加载so文件。</p>
 
 <h4>link_map 的结构</h4>
 <div class="highlight"><pre><code class="language-C" data-lang="C"><span class="cm">/* Structure describing a loaded shared object.  The `l_next&#39; and `l_prev&#39;</span>
@@ -231,7 +231,7 @@
     <span class="k">struct</span> <span class="n">link_map</span> <span class="o">*</span><span class="n">l_next</span><span class="p">,</span> <span class="o">*</span><span class="n">l_prev</span><span class="p">;</span> <span class="cm">/* Chain of loaded objects.  */</span>
 <span class="p">};</span>
 </code></pre></div>
-<p>可以通过遍历link<em>map寻找库，对比l</em>name，找到目标之后，可以通过l_addr获得库的基址。</p>
+<p>可以通过遍历link_map寻找库，对比l_name，找到目标之后，可以通过l_addr获得库的基址。</p>
 
 <h4>DT_DEBUG 寻找 link_map</h4>
 
@@ -275,7 +275,7 @@
   <span class="p">};</span>
 </code></pre></div>
 <ul>
-<li>可以通过遍历link<em>map寻找库，对比l</em>name，找到目标之后，可以通过l_addr获得库的基址。</li>
+<li>可以通过遍历link_map寻找库，对比l_name，找到目标之后，可以通过l_addr获得库的基址。</li>
 </ul>
 <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">gdb</span><span class="o">-</span><span class="n">peda</span><span class="err">$</span> <span class="n">x</span><span class="o">/</span><span class="mi">10</span><span class="n">xw</span> <span class="mh">0x55575918</span>
 <span class="mh">0x55575918</span> <span class="o">&lt;</span><span class="n">_r_debug</span><span class="o">&gt;</span><span class="p">:</span>  <span class="mh">0x00000001</span>  <span class="mh">0x55575930</span>  <span class="mh">0x55564090</span>  <span class="mh">0x00000000</span>
@@ -294,7 +294,7 @@
 <span class="n">gdb</span><span class="o">-</span><span class="n">peda</span><span class="err">$</span> <span class="n">x</span><span class="o">/</span><span class="n">s</span> <span class="mh">0x55575e90</span>
 <span class="mh">0x55575e90</span><span class="p">:</span> <span class="s">&quot;linux-gate.so.1&quot;</span>
 </code></pre></div>
-<h2><em>dl</em>runtime_resolver</h2>
+<h2>_dl_runtime_resolver</h2>
 
 <p>在下一篇中介绍</p>
 
@@ -309,7 +309,7 @@
 <p><a href="http://tsecer.blog.163.com/blog/static/15018172013924104112444/">gdb对attach和core文件的处理方式</a></p>
 
       <footer class="entry-meta">
-        <span class="entry-tags"><a href="/tags/#.dynamic" title="Pages tagged .dynamic" class="tag"><span class="term">.dynamic</span></a><a href="/tags/#link_map" title="Pages tagged link_map" class="tag"><span class="term">link_map</span></a></span>
+        <span class="entry-tags"><a href="/tags/#exploit" title="Pages tagged exploit" class="tag"><span class="term">exploit</span></a><a href="/tags/#.dynamic" title="Pages tagged .dynamic" class="tag"><span class="term">.dynamic</span></a><a href="/tags/#link_map" title="Pages tagged link_map" class="tag"><span class="term">link_map</span></a></span>
         
         <div class="social-share">
   <ul class="socialcount socialcount-small inline-list">
@@ -327,20 +327,20 @@
       <a href="/debugging-forks/" class="read-more-btn">Read More</a>
     </div><!-- /.read-more-header -->
     <div class="read-more-content">
-      <h3><a href="/debugging-forks/" title="Debugging Forks">Debugging Forks</a></h3>
-      <p>debug the parent process and the child processBy default, when a program forks, gdb will continue to debug the parent process and the chi...&hellip; <a href="/debugging-forks/">Continue reading</a></p>
+      <h3><a href="/_dl_runtime_resolve-research/" title="_dl_runtime_resolve Research">_dl_runtime_resolve Research</a></h3>
+      <p>## 调试相关安装libc debug symbol.```shsudo apt-get install libc-dbg```安装libc6 source```shsudo apt-get install build-essentialsudo apt-get sourc...&hellip; <a href="/_dl_runtime_resolve-research/">Continue reading</a></p>
     </div><!-- /.read-more-content -->
   
   <div class="read-more-list">
     
       <div class="list-item">
-        <h4><a href="/ptrace-with-suid-program/" title="Suid program can't work with ptrace">Suid program can't work with ptrace</a></h4>
-        <span>Published on September 05, 2015</span>
+        <h4><a href="/debugging-forks/" title="Debugging Forks">Debugging Forks</a></h4>
+        <span>Published on September 08, 2015</span>
       </div><!-- /.list-item -->
     
       <div class="list-item">
-        <h4><a href="/debug-kernel-with-vmware/" title="[转]使用Vmware调试Linux内核">[转]使用Vmware调试Linux内核</a></h4>
-        <span>Published on September 03, 2015</span>
+        <h4><a href="/ptrace-with-suid-program/" title="Suid program can't work with ptrace">Suid program can't work with ptrace</a></h4>
+        <span>Published on September 05, 2015</span>
       </div><!-- /.list-item -->
     
   </div><!-- /.read-more-list -->

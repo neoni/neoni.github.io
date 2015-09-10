@@ -3,7 +3,7 @@ layout: post
 title: Pyjail Tricks
 date: 2015-07-26T03:31:50+00:00
 comments: true
-tags: [pyjail, python]
+tags: [exploit, pyjail, python]
 ---
 
 ##实现
