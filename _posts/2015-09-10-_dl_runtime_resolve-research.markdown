@@ -200,7 +200,7 @@ gdb-peda$ x/10xg 0x4003b8
 
 加上对应的 reloc\_offset，就可以找到函数的重定位入口 reloc
 
-其中 puts@plt 的 reloc\_offset 为0，所以 reloc =  0x4003b8 + 0 = 0x4003b8, 其中 `r_offset` 为 0x0000000000601000， 即 `puts@got.plt` 的地址，`r_info` 为0x0000000100000007， `r_info` 保存的是其类型和符号序号。根据宏的定义，对于此条目，其类型为`ELF64_R_TYPE(r_info)=7`，对应于 `R_X86_64_JUMP_SLOT`；其symbol index则为 `RLF64_R_SYM(r_info)=1`。
+其中 puts@plt 的 reloc\_offset 为0，所以 reloc =  0x4003b8 + 0*RELENT = 0x4003b8, 其中 `r_offset` 为 0x0000000000601000， 即 `puts@got.plt` 的地址，`r_info` 为0x0000000100000007， `r_info` 保存的是其类型和符号序号。根据宏的定义，对于此条目，其类型为`ELF64_R_TYPE(r_info)=7`，对应于 `R_X86_64_JUMP_SLOT`；其symbol index则为 `RLF64_R_SYM(r_info)=1`。
 
 
 2) 计算函数的 symtab entry
@@ -298,7 +298,7 @@ value = DL_FIXUP_MAKE_VALUE (result
 
 * `_dl_runtime_resolve` 调用 `_dl_fixup` 来完成符号解析。
 
-* 首先通过 `.dynamic` 中的 `DT_JMPREL` 与参数 `reloc_offset` 的值找到重定位结构 `Elf64_Rel`，然后根据`Elf64_Rel->r_offset` 在 `DT_SYMTAB` 找到符号结构 Elf64_Sym。
+* 首先通过 `.dynamic` 中的 `DT_JMPREL` 与参数 `reloc_offset*RELENT` 的值找到重定位结构 `Elf64_Rel`，然后根据`Elf64_Rel->r_offset` 在 `DT_SYMTAB` 找到符号结构 Elf64_Sym。
 
 * 并根据`Elf64_Rel->r_info` 与 `Elf64_Sym->st_other` 校验。
 
